@@ -150,7 +150,7 @@ class VirtualEndpoint(RestEndpoint):
             config=self._ledfx.config,
             config_dir=self._ledfx.config_dir,
         )
-
+        VirtualSegmentUpdateEvent(self.id, self._config)
         response = {"status": "success", "segments": virtual.segments}
         return web.json_response(data=response, status=200)
 

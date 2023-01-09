@@ -21,6 +21,7 @@ class Event:
     SCENE_DELETED = "scene_deleted"
     PRESET_ACTIVATED = "preset_activated"
     VIRTUAL_CONFIG_UPDATE = "virtual_config_update"
+    VIRTUAL_SEGMENT_UPDATE = "virtual_SEGMENT_update"
     GLOBAL_PAUSE = "global_pause"
     VIRTUAL_PAUSE = "virtual_pause"
     AUDIO_INPUT_DEVICE_CHANGED = "audio_input_device_changed"
@@ -155,6 +156,14 @@ class VirtualConfigUpdateEvent(Event):
         super().__init__(Event.VIRTUAL_CONFIG_UPDATE)
         self.virtual_id = virtual_id
         self.config = config
+
+class VirtualSegmentUpdateEvent(Event):
+    """Event emitted when a virtual's segment is updated"""
+    def __init__(self, virtual_id, config):
+        super().__init__(Event.VIRTUAL_CONFIG_UPDATE)        
+        self.virtual_id = virtual_id
+        self.config = config
+        # Calibration Mode for 5 seconds: for each segment in this virtual, apply solid color red, green, blue, red,...
 
 
 class LedFxShutdownEvent(Event):
